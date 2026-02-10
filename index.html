@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Valentine 💘</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
     body {
@@ -21,6 +22,8 @@
         padding: 30px;
         border-radius: 15px;
         box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        max-width: 90%;
+        z-index: 2;
     }
 
     h1 {
@@ -55,13 +58,29 @@
         border-radius: 15px;
         margin-top: 15px;
     }
+
+    /* Heart animation */
+    .heart {
+        position: fixed;
+        top: -10px;
+        font-size: 24px;
+        animation: fall linear forwards;
+        z-index: 1;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
 </style>
 </head>
 
 <body>
 
 <div class="container" id="questionBox">
-    <h1>Will you be my Valentine? 💖</h1>
+    <h1>Will you be my Valentine, Gunduuu? 💖</h1>
     <button id="yesBtn">Yes ❤️</button>
     <button id="noBtn">No 😏</button>
 </div>
@@ -69,9 +88,8 @@
 <div class="container" id="result">
     <h1>BEST DECISION EVER 🎉🥳</h1>
 
-    <!-- Replace video link if you want -->
-    <video autoplay loop muted>
-        <source src="https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.mp4" type="video/mp4">
+    <video autoplay loop muted playsinline>
+        <source src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaW5uOHcwMnpmcXJ3YW80ZDVudHppOWpjNWZ2cmZoNDAxNHE2N203eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/RIjVnmAtOD4l4c2Ert/giphy.gif" type="video/mp4">
     </video>
 </div>
 
@@ -92,6 +110,20 @@
         questionBox.style.display = "none";
         result.style.display = "block";
     });
+
+    // ❤️ Heart rain
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerText = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
 </script>
 
 </body>
